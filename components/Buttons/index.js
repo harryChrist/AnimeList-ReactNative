@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 // Um Buttão Estilizado
@@ -33,3 +33,21 @@ export const SuperButton = styled.TouchableOpacity`
   elevation: 5;
   background: ${props => props.second ? "rgba(230, 230, 230,0)" : 'rgba(47,6,124,1)'}
 `
+
+// Apenas um Simples Botão
+export function ForgotButton(props) {
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate(props.local)} style={[styles.container, props.style]}>
+      <Text style={styles.button}>{props.button || "Button"}</Text>
+    </TouchableOpacity>
+  );
+}
+
+const styles = StyleSheet.create({
+  button: {
+    marginTop: 10,
+    color: "rgba(53,148,243,1)",
+    fontSize: 17,
+  }
+});

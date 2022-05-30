@@ -1,10 +1,27 @@
 import React, { Component, useEffect, useState } from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View, Image, Text } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { SupButton } from '../../components/Buttons'
 
-function Anime({ route, navigation }) {
+function save (data) {
+  const saved = {
+    id:data.id,
+    tilte: data.attributes.canonicalTitle,
+    averageRating: data.attributes.averageRating,
+    status: data.attributes.stastus,
+    ageRatingGuide: data.attributes.ageRatingGuide,
+    createdAt: data.attributes.createdAt,
+    synopsis: data.attributes.synopsis,
+    posterImage: data.attributes.posterImage,
+    coverImage: data.attributes.coverImage ? data.attributes.coverImage : data.attributes.posterImage,
+    episodeCount: data.attributes.episodeCount,
+    youtubeVideoId: data.attributes.youtubeVideoId,
+  }
+}
 
-  const { data } = route.params;
+function AnimePage({ route, navigation }) {
+  var { data } = route.params;
 
   navigation.setOptions({ title: data.attributes.canonicalTitle })
 
@@ -13,55 +30,62 @@ function Anime({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.group4Stack}>
-        <View style={styles.BackGround}>
-          <Image
-            source={{
-              uri: background,
-            }}
-            resizeMode="stretch"
-            style={styles.Background_Image}
-          ></Image>
-          <View style={styles.rect}></View>
-        </View>
-        <Image
-          source={{
-            uri: image,
-          }}
-          resizeMode="contain"
-          style={styles.AnimeImage}
-        ></Image>
-        <View style={styles.Description}>
-          <Text style={styles.Title}>
-            {data.attributes.canonicalTitle}
+      <SafeAreaView>
+        <ScrollView>
+          <View style={styles.group4Stack}>
+            <View style={styles.BackGround}>
+              <Image
+                source={{
+                  uri: background,
+                }}
+                resizeMode="stretch"
+                style={styles.Background_Image}
+              ></Image>
+              <View style={styles.rect}></View>
+            </View>
+            <Image
+              source={{
+                uri: image,
+              }}
+              resizeMode="stretch" //contain
+              style={styles.AnimeImage}
+            ></Image>
+            <View style={styles.Description}>
+              <Text numberOfLines={2} style={styles.Title}>
+                {data.attributes.canonicalTitle}
+              </Text>
+              <Text style={styles.studioPierrot}>Studio: Studio Pierrot</Text>
+              <Text style={styles.episodes500}>Episodes: 500</Text>
+              <Text style={styles.studioPierrot2}>
+                Genres: Action, Adventure, Fantasy
+              </Text>
+            </View>
+          </View>
+          <View style={styles.groupRow}>
+            <View style={styles.Marks}>
+              <FontAwesomeIcon name="eye" style={styles.MarksIcons} />
+              <FontAwesomeIcon name="bookmark" style={styles.MarksIcons} />
+              <FontAwesomeIcon name="lock" style={styles.MarksIcons} />
+              <FontAwesomeIcon name="check" style={styles.MarksIcons} />
+            </View>
+            <View style={styles.Avaliate}>
+              <Text style={styles.avaliar}>Avaliar:</Text>
+              <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
+              <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
+              <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
+              <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
+              <FontAwesomeIcon name="star" style={styles.AvaliarIcons_false} />
+            </View>
+          </View>
+          <View style={styles.trailer}>
+            <SupButton title='Trailer' />
+          </View>
+          <Text style={styles.subTitulo}>Sinopse:</Text>
+          <Text style={styles.synopse}>
+            {data.attributes.synopsis}
           </Text>
-          <Text style={styles.studioPierrot}>Studio: Studio Pierrot</Text>
-          <Text style={styles.episodes500}>Episodes: 500</Text>
-          <Text style={styles.studioPierrot2}>
-            Genres: Action, Adventure, Fantasy
-          </Text>
-        </View>
-      </View>
-      <View style={styles.groupRow}>
-        <View style={styles.Marks}>
-          <FontAwesomeIcon name="eye" style={styles.MarksIcons} />
-          <FontAwesomeIcon name="bookmark" style={styles.MarksIcons} />
-          <FontAwesomeIcon name="lock" style={styles.MarksIcons} />
-          <FontAwesomeIcon name="check" style={styles.MarksIcons} />
-        </View>
-        <View style={styles.Avaliate}>
-          <Text style={styles.avaliar}>Avaliar:</Text>
-          <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
-          <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
-          <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
-          <FontAwesomeIcon name="star" style={styles.AvaliarIcons} />
-          <FontAwesomeIcon name="star" style={styles.AvaliarIcons_false} />
-        </View>
-      </View>
-      <Text style={styles.trailer}>Trailer</Text>
-      <Text style={styles.synopse}>
-        Synopsis: {data.attributes.synopsis}
-      </Text>
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
@@ -81,6 +105,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     width: '100%',
     height: 73
+  },
+  subTitulo: {
+    color: 'white',
+    fontSize: 18,
+    marginHorizontal: 25,
   },
   BackGround: {
     width: '100%',
@@ -106,7 +135,7 @@ const styles = StyleSheet.create({
     top: 160,
     left: 25,
     height: 200,
-    width: 142
+    width: 142,
   },
   Description: {
     top: 171,
@@ -139,8 +168,7 @@ const styles = StyleSheet.create({
     color: "rgba(181,181,181,1)",
     height: 276,
     textAlign: "left",
-    marginTop: 10,
-    margin: 25,
+    marginHorizontal: 25,
   },
   MarksIcons: {
     color: "rgba(128,128,128,1)",
@@ -181,14 +209,16 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 25
   },
-  trailer: {
+  trailer_text: {
     //fontFamily: "roboto-regular",
     color: "rgba(255,255,255,1)",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "center",
-    marginTop: 10,
+    alignSelf: 'center',
+  },
+  trailer: {
     alignSelf: 'center',
   }
 });
 
-export default Anime;
+export default AnimePage;

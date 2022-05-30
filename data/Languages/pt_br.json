@@ -1,0 +1,51 @@
+{
+    "language": {
+        "name":"Português",
+        "lang":"pt_br"
+    },
+    "welcome": {
+        "title": "Bem Vindo",
+        "login": "Logar",
+        "sing_up": "Inscrever"
+    },
+    "login": {
+        "title": "Login",
+        "input_email": "Email ou Usuário",
+        "input_pass": "Senha",
+        "button": "Logar",
+        "forget": "Esqueceu sua Senha?"
+    },
+    "singUp": {
+        "title": "Registro",
+        "input_user":"Usuário",
+        "input_email": "Email",
+        "input_pass": "Senha",
+        "input_pass_verify":"Verificar Senha",
+        "button": "Se Inscrever",
+        "forget": "Você já tem uma conta?"
+    },
+    "library":{
+        "watching":"Watching",
+        "waiting":"Waiting",
+        "droped":"Droped",
+        "watched":"Watched"
+    },
+    "navegate":{
+        "title":"Navegação",
+        "input_search":"Procurar",
+        "null":"Nada..",
+        "loading":"Carregando.."
+    },
+    "animePage":{
+        "episode":"Episódios",
+        "genre":"Generos",
+        "trailer":"Trailer",
+        "sinopse":"Sinópse"
+    },
+    "settings": {
+        "change_pass":"Mudar Senha",
+        "change_email":"Mudar E-Mail",
+        "singOut":"Sair da Conta",
+        "language":"Linguagem"
+    }
+}

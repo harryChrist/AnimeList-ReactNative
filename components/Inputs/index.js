@@ -113,6 +113,6 @@ const styles = StyleSheet.create({
 
 const Error = styled.Text`
   color: rgb(255, 51, 51);
-  fontSize: 16;
+  fontSize: 16px;
   text-align: center;
-  marginTop: 6`
+  marginTop: 6px`

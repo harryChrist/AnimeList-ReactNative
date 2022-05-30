@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 import Welcome from '../../pages/Welcome';
 import SingIn from '../../pages/SingIn';
 import SingUp from '../../pages/SingUp';
-import HomeScreen from '../Home/index';
+import HomeScreen from '../Screens/index';
 import AnimePage from '../../pages/AnimePage';
 
 // Options
@@ -20,9 +20,9 @@ const optionsLogin = {
   headerTintColor: '#fff',
 }
 
-export default function Routes({ login }) {
+export default function Login() {
   return (
-    <Stack.Navigator initialRouteName={login}>
+    <Stack.Navigator initialRouteName='Welcome'>
       <Stack.Screen
         name="Welcome"
         component={Welcome}
@@ -38,23 +38,15 @@ export default function Routes({ login }) {
         component={SingUp}
         options={optionsLogin}
       />
-      <Stack.Screen
-        name="Home"
+    </Stack.Navigator>
+  );
+}
+
+/*<Stack.Screen
+        name="Logado"
         component={HomeScreen}
         options={{
           headerShown: false,
           headerTransparent: true,
         }}
-      />
-      <Stack.Screen
-        name="AnimePage"
-        component={AnimePage}
-        options={{
-          headerShown: true,
-          headerTransparent: true,
-          headerTintColor: '#fff',
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
+      /> */

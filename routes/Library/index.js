@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, Text, Alert, StyleSheet  } from "react-native";
+import { View, Image, Text, Alert, StyleSheet } from "react-native";
 
 
 // Criação do Tab
@@ -21,15 +21,19 @@ let icons = {
     Watched: "check",
 }
 
+import { AuthContext } from '../../context/context'
+
 // Fazer uso de props, pegando um FUCKING JSON pesado e repassando em cada biblioteca
 export default function Library() {
+    const { lang } = React.useContext(AuthContext);
+    const translate = lang('singUp')
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
-                /*tabBarIcon: ({focused, color, size}) => {
+                tabBarIcon: ({focused, color, size}) => {
                   let iconName = icons[route.name] || "home";
                   return <Icon name={iconName} color={color} size={size} style={styles.iconStyle}></Icon>;
-                },*/
+                },
                 tabBarActiveTintColor: 'white',
                 tabBarInactiveTintColor: 'gray',
                 tabBackgroundColor: '#2F067C',
@@ -39,13 +43,14 @@ export default function Library() {
                 tabBarIndicatorStyle: { // Barra dbaixo
                     backgroundColor: 'white'
                 },
+                tabBarShowLabel: false,
                 tabBarLabelStyle: {
                     fontSize: 13,
                 },
                 tabBarItemStyle: {
                     fontSize: 10,
                 },
-                
+
             })}>
             <Tab.Screen name="Watching" component={Watching} />
             <Tab.Screen name="Waiting" component={Waiting} />
@@ -57,9 +62,7 @@ export default function Library() {
 
 const styles = StyleSheet.create({
     iconStyle: {
-        fontSize: 20,
-        paddingTop: 10,
-        paddingLeft: 5,
+        fontSize: 23,
         justifyContent: 'center',
         height: '100%',
     },

@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component, useContext, useState } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 
 // usar navegação
@@ -6,14 +6,25 @@ import { useNavigation } from '@react-navigation/native'
 // Componentes Estilizados
 import { SupButton } from "../../components/Buttons";
 import { HeaderNav } from "../../components/Headers";
-
+import { PickerLang } from "../../components/Selects";
 import Icon from "react-native-vector-icons/Ionicons";
 import { AuthContext } from "../../context/context";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+import { LangList } from '../../data/language'
 
 export default function Settings(props) {
-  const navigation = useNavigation();
+  // Translate
+  const { singOut, lang, setLang } = React.useContext(AuthContext);
+  const translate = lang('settings')
 
-  const { singOut } = useContext(AuthContext);
+  const navigation = useNavigation();
+  const [selectedValue, setSelectedValue] = useState('English');
+  const setItem = (sex) => {
+    setSelectedValue(sex);
+    setLang(sex)
+  }
+
   return (
     <View style={styles.container}>
       <HeaderNav
@@ -21,31 +32,33 @@ export default function Settings(props) {
         placeholder='Search'
         onChangeText={text => setText(text)}
         NoSearchBar />
-
+      <TouchableOpacity>
+        <Text>{ }</Text>
+      </TouchableOpacity>
+      <Text style={{ color: 'white' }}>{selectedValue}</Text>
       <View style={styles.icon1Row}>
         <Icon
           name="document-text-outline"
           style={styles.icon1}
         />
-        <Text style={styles.language}>Language:</Text>
-        <View style={styles.rect}>
-          <Text style={styles.linguagem}>en_us</Text>
-          <Icon
-            name="caret-down-circle-outline"
-            style={styles.icon2}
-          />
-        </View>
+        <Text style={styles.language}>{translate.language}:</Text>
+        <PickerLang
+          data={LangList}
+          selectedValue={selectedValue}
+          map={{ lang: "lang", name: "name" }}
+          onValueChange={setItem}
+        />
       </View>
       <View style={styles.Changes}>
         <Text style={styles.change_Title}>Change</Text>
         <SupButton second
-          title="Change Password"
+          title={translate.change_pass}
         />
         <SupButton second
-          title="Change Email"
+          title={translate.change_email}
         />
         <SupButton second
-          title="SingOut"
+          title={translate.singOut}
           onPress={() => singOut()}
         />
       </View>
@@ -120,8 +133,8 @@ const styles = StyleSheet.create({
     width: 14
   },
   icon1Row: {
-    height: 33,
+    height: 40,
     flexDirection: "row",
-    marginTop: 80,
+    marginTop: 40,
   },
 });

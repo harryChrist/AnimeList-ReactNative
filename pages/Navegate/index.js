@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { View, FlatList, Image, Text, StyleSheet, TextInput } from "react-native";
 
+import { AuthContext } from '../../context/context'
 // usar navegação
 import { useNavigation } from '@react-navigation/native'
 import { SearchInput } from '../../components/Inputs'
@@ -13,22 +14,26 @@ import styles from './style'
 const api = 'https://kitsu.io/api/edge/';
 
 export default function Navegate() {
+  // Translate
+  const { singIn, lang } = React.useContext(AuthContext);
+  const translate = lang('navegate')
+
+  // Info Data Anime
   const [info, setInfo] = useState({});
   const [text, setText] = useState('');
-  const navigation = useNavigation(); // Use to Navegate
+  // Use to Navegate
+  const navigation = useNavigation();
 
   const AnimeInfo = (itemID) => {
     let anime = info.data.find(a => a.id == itemID);
-    navigation.push('AnimePage', { data: anime })
+    navigation.push('Anime', { data: anime })
   };
 
   useEffect(() => {
     if (text) {
       setInfo({});
 
-      fetch(
-        `${api}anime?filter[text]=${text}&page[limit]=18`
-      )
+      fetch(`${api}anime?filter[text]=${text}&page[limit]=18`)
         .then((response) => response.json())
         .then((response) => {
           setInfo(response);
@@ -38,15 +43,16 @@ export default function Navegate() {
   return (
     <View style={styles.container}>
       <HeaderNav
-        title="Navegate"
-        placeholder='Search'
+        title={translate.title}
+        placeholder={translate.input_search}
         onChangeText={text => setText(text)} />
 
       {text == '' ? <View style={styles.back}>
-        <Text style={styles.Loading}>Nothing..</Text>
+        <Text style={styles.Loading}>{translate.null}</Text>
         <Image
-          source={require("../../assets/icons/Killua_Eating.png")} />
-      </View> : <Text style={styles.Loading}>{text && !info.data && 'Loading...'}</Text>}
+          resizeMode="contain"
+          source={require("../../assets/icons/Killua_Eating.png")} style={styles.image} />
+      </View> : <Text style={styles.Loading}>{text && !info.data && translate.loading}</Text>}
 
       <FlatList
         data={text ? info.data : {}}

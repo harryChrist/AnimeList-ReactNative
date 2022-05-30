@@ -6,6 +6,7 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
 export const SupButton = styled.TouchableOpacity`
   height: 45px;
   width: 244px;

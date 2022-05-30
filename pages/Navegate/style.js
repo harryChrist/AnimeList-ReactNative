@@ -13,10 +13,14 @@ const styles = StyleSheet.create({
   },
   Loading: {
     fontSize: 24,
+    marginTop: 50,
     alignSelf: 'center',
     color: '#fff',
     position: 'absolute',
     justifyContent: 'center',
+  },
+  image: {
+    width: '100%',
   },
   inputStyle: {
     color: "#fff",
@@ -32,6 +36,7 @@ const styles = StyleSheet.create({
   },
   back: {
     alignItems: 'center',
+    width: '80%',
     margin: 50,
   },
   list_content:{
