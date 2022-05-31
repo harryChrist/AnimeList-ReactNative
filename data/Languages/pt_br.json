@@ -43,6 +43,7 @@
         "sinopse":"Sinópse"
     },
     "settings": {
+        "title":"Configurações",
         "change_pass":"Mudar Senha",
         "change_email":"Mudar E-Mail",
         "singOut":"Sair da Conta",

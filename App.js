@@ -28,8 +28,8 @@ export default function App() {
     lang: (key) => {
       return i18n(key, lang);
     },
-    singIn: () => {
-      setUserToken('shiro');
+    singIn: (token) => {
+      setUserToken(token || 'shiro' );
       setIsLoading(false);
     },
     singOut: () => {

@@ -14,6 +14,9 @@ import * as Animatable from 'react-native-animatable'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 
+// Banco de Dados
+import { CreateUser } from '../../data/services/Users'
+
 function Register(props) {
   // Tradução
   const { singUp, lang } = React.useContext(AuthContext);
@@ -23,8 +26,11 @@ function Register(props) {
     resolver: yupResolver(InputSchema)
   });
 
+  const onSubmit = (data) => {
+    console.log(data)
+  }
   // Apenas um alert, para retornar um array, das informações
-  const onSubmit = (data) => Alert.alert(JSON.stringify(data));
+  //const onSubmit = (data) => Alert.alert(JSON.stringify(data));
 
   return (
     <View style={styles.container}>
@@ -80,7 +86,7 @@ function Register(props) {
             ></ForgotButton>
             <SupButton
               title={translate.button}
-              onPress={handleSubmit(onSubmit)}
+              onPress={handleSubmit(CreateUser)}
             />
           </Animatable.View>
         </ScrollView>

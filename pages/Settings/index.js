@@ -19,7 +19,7 @@ export default function Settings(props) {
   const translate = lang('settings')
 
   const navigation = useNavigation();
-  const [selectedValue, setSelectedValue] = useState('English');
+  const [selectedValue, setSelectedValue] = useState();
   const setItem = (sex) => {
     setSelectedValue(sex);
     setLang(sex)
@@ -28,9 +28,8 @@ export default function Settings(props) {
   return (
     <View style={styles.container}>
       <HeaderNav
-        title="News"
+        title={translate.title}
         placeholder='Search'
-        onChangeText={text => setText(text)}
         NoSearchBar />
       <TouchableOpacity>
         <Text>{ }</Text>

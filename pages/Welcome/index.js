@@ -1,28 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
+import { AuthContext } from "../../context/context";
 
 // usar navegação
 import { useNavigation, CommonActions } from '@react-navigation/native'
 // Componentes Estilizados
 import styles, { Container, SupButton, Imagem, Texto } from './style'
 
-import { AuthContext } from "../../context/context";
-
 export default function Welcome(props) {
   const { singIn, lang } = React.useContext(AuthContext);
-  const translate = lang('welcome')
-
+  const translate = lang('welcome');
   const navigation = useNavigation();
 
-  const entrar = () => {
-    /*navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [
-          { name: 'Logado' },
-        ],
-      })
-    );*/
-  }
   return (
     <Container>
       <Imagem
@@ -37,7 +25,7 @@ export default function Welcome(props) {
         <Texto>{translate.login}</Texto>
       </SupButton>
 
-      <SupButton onPress={() => singIn()}>
+      <SupButton onPress={singIn}>
         <Texto>Home</Texto>
       </SupButton>
     </Container>

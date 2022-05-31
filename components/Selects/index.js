@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
-import {Picker} from '@react-native-picker/picker'
+import { Text, View, StyleSheet, Image, Picker } from 'react-native';
+//import {Picker} from '@react-native-picker/picker'
 
 export function PickerLang({ data, map, onValueChange }) {
     return (
