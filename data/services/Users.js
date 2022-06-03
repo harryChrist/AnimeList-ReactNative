@@ -13,6 +13,16 @@ const Users = {
 import { db } from "../config/firebase";
 import { collection, getDocs } from 'firebase/firestore/lite'
 
+// Authenticated = Login
+import { Auth } from "../config/firebase";
+import {
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
+    updateProfile,
+    signInWithEmailAndPassword,
+    signOut
+} from 'firebase/auth';
+
 const onSubmit = (data) => {
     console.log(data)
 }
@@ -41,9 +51,55 @@ export async function CreateUser(json) {
     }
 }
 
-// Verificar se a conta existe, e etc.
-export function VerifyCreate(data) {
+export const singInUser = (email, password) => {
+    signInWithEmailAndPassword(Auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(user)
+            return user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            return null;
+            console.log(error.message)
+        });
+}
 
+export const registerUser = async (user, email, password) => {
+    try {
+        await createUserWithEmailAndPassword(Auth, email, password)
+            .catch((err) =>
+                console.log(err)
+            ).then((re) => {
+                console.log(re);
+            });
+        await sendEmailVerification(Auth.currentUser).catch((err) =>
+            console.log(err)
+        );
+        await updateProfile(Auth.currentUser, {
+            displayName: user,
+            photoURL: 'https://cdn.discordapp.com/attachments/981189453777338419/981189539789934612/unknown.png',
+        })
+            .catch(
+                (err) => console.log(err)
+            );
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const singOutUser = () => {
+    signOut(Auth).then(() => {
+        // Sign-out successful.
+        return true;
+    }).catch((error) => {
+        // An error happened.
+        console.log(error)
+        return false;
+    });
 }
 
 // Pegar Dados

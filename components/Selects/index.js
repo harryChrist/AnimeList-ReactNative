@@ -1,14 +1,18 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, Picker } from 'react-native';
-//import {Picker} from '@react-native-picker/picker'
+import { Text, View, StyleSheet, Image } from 'react-native';
+import {Picker} from '@react-native-picker/picker'
 
-export function PickerLang({ data, map, onValueChange }) {
+export function PickerLang({ data, map, selectedValue, onValueChange, ...rest }) {
     return (
         <View style={styles.container}>
-            <Picker style={styles.picker} onValueChange={onValueChange}>
+            <Picker style={styles.picker}
+            selectedValue={selectedValue}
+            onValueChange={(itemValue, itemIndex) => onValueChange(itemValue)}
+            {...rest}>
                 {data.map((item) => (
                     <Picker.Item
                         label={item[map.name]}
+                        key={item[map.lang]}
                         value={item[map.lang]} />
                 ))}
             </Picker>

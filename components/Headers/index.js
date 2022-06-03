@@ -4,7 +4,7 @@ import { SearchInput } from '../Inputs'
 
 import Icon from "react-native-vector-icons/Ionicons";
 
-export function HeaderNav({icon, title, style, value, NoSearchBar, ...rest}) {
+export function HeaderNav({icon, title, style, value, onPress, NoSearchBar, ...rest}) {
   return (
     <View style={[styles.container, style]}>
       <View style={styles.textWrapperRow}>
@@ -19,7 +19,7 @@ export function HeaderNav({icon, title, style, value, NoSearchBar, ...rest}) {
         /> }
       </View>
       <View style={styles.textWrapperRowFiller}></View>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity style={styles.iconButton} onPress={onPress}>
           <Icon name="ellipsis-vertical-outline" style={styles.Options}/>
         </TouchableOpacity>
     </View>

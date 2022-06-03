@@ -36,17 +36,49 @@
         "null":"Nada..",
         "loading":"Carregando.."
     },
-    "animePage":{
-        "episode":"Episódios",
-        "genre":"Generos",
-        "trailer":"Trailer",
-        "sinopse":"Sinópse"
-    },
     "settings": {
         "title":"Configurações",
         "change_pass":"Mudar Senha",
         "change_email":"Mudar E-Mail",
         "singOut":"Sair da Conta",
         "language":"Linguagem"
+    },
+    "news":{
+        "title":"Novidades",
+        "seasonNow":"Temporada Atualmente ",
+        "topAnime":"Top Animes",
+        "seasonUp":"Próxima Temporada"
+    },
+    "seasons": {
+        "upcoming": "UpComing",
+        "airing": "Airing",
+        "bypopularity": "ByPopularity",
+        "favorite": "Favorites",
+        "winter":"Winter",
+        "spring":"Spring",
+        "summer":"Summer",
+        "fall":"Fall"
+    },
+    "animePage":{
+        "trailer":"Trailer",
+        "informations":"Informações",
+        "sinopse":"Sinopse",
+        "rating":"Sua Avaliação",
+        "status":"Status",
+        "score":"Avaliação",
+        "rank":"Rank",
+        "age":"Idade",
+        "type":"Tipo",
+        "season":"Periodo",
+        "producers":"Produtores",
+        "studio":"Studios",
+        "genre":"Gêneros",
+        "characters":"Personagens"
+    },
+    "characterPage": {
+        "about":"Sobre:",
+        "animes":"Animes Relacionados",
+        "mangas":"Mangas Relacionados",
+        "voices":"Dubladores"
     }
 }

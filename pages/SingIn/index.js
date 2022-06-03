@@ -3,12 +3,12 @@ import { SafeAreaView, ScrollView, View, Image, Text, Alert } from "react-native
 
 import { AuthContext } from "../../context/context";
 // Componentes
-import { ControlledInput, InputSchema } from "../../components/Inputs";
 import { SupButton, ForgotButton } from "../../components/Buttons";
+import { ControlledInput, InputSchema2 } from "../../components/Inputs";
 
 // Animação e css
-import * as Animatable from 'react-native-animatable'
 import styles from './style'
+import * as Animatable from 'react-native-animatable'
 
 // Import de Formulário e seu resolver(error)
 import { useForm } from 'react-hook-form'
@@ -20,11 +20,11 @@ function Login(props) {
   const translate = lang('login')
   // Sistema de uso do UseForm
   const { control, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(InputSchema)
+    resolver: yupResolver(InputSchema2)
   });
 
   // Apenas um alert, para retornar um array, das informações
-  const onSubmit = (data) => Alert.alert(JSON.stringify(data));
+  const onSubmit = (data) => singIn(data.email, data.password);
 
   return (
     <View style={styles.container}>
@@ -59,7 +59,6 @@ function Login(props) {
 
           <Animatable.View delay={500} animation='fadeInUp'>
             <ForgotButton
-              caption="Button"
               button={translate.forget}
               style={styles.cupertinoButtonBlueTextColor}
             ></ForgotButton>

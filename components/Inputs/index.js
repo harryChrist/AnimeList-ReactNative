@@ -24,6 +24,11 @@ export const InputSchema = yup.object({
   password_confirm: yup.string().oneOf([yup.ref('password'), null], "Passwords isn't the same!")
 })
 
+export const InputSchema2 = yup.object({
+  email: yup.string().email("E-mail invalid!").required("Inform your E-mail!"),
+  password: yup.string().min(6, "The password requires min six digits!").required("Inform your password!"),
+})
+
 // Um Input estilizado, para ser usado para o ControlledInput
 export function Input({icon, value, ...rest}) {
   return (

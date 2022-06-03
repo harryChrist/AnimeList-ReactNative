@@ -7,6 +7,7 @@ const Stack = createStackNavigator();
 
 // Pages
 import HomeScreen from '../Home/index';
+import CharacterPage from '../../pages/CharacterPage';
 import AnimePage from '../../pages/AnimePage';
 
 export default function Routes() {
@@ -23,6 +24,15 @@ export default function Routes() {
       <Stack.Screen
         name="Anime"
         component={AnimePage}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTintColor: '#fff',
+        }}
+      />
+      <Stack.Screen
+        name="Character"
+        component={CharacterPage}
         options={{
           headerShown: true,
           headerTransparent: true,

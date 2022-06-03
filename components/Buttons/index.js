@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
+import styled from 'styled-components/native';
+
 // Um Buttão Estilizado
 export function SupButton({ title, ...rest }) {
   const navigation = useNavigation();
@@ -14,8 +16,6 @@ export function SupButton({ title, ...rest }) {
     </SuperButton>
   );
 }
-
-import styled from 'styled-components/native';
 
 export const SuperButton = styled.TouchableOpacity`
   height: 45px;

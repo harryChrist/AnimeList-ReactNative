@@ -44,12 +44,13 @@ const styles = StyleSheet.create({
   },
   flat_list:{
     padding: 10,
-    marginBottom: 10,
+    marginBottom: 45,
   },
   animeItem: {
+    marginRight: 5,
+        marginLeft: 5,
+        marginBottom: 10,
     borderColor: '#fff',
-    margin: 10,
-    borderColor: "#CCC",
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 1.5,

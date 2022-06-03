@@ -5,17 +5,18 @@ import { AuthContext } from '../../context/context'
 // usar navegação
 import { useNavigation } from '@react-navigation/native'
 import { SearchInput } from '../../components/Inputs'
-import AnimeItem from '../../components/ItemAnime'
+import {AnimeItem, CharacterItem} from '../../components/ItemAnime'
 import { HeaderNav } from '../../components/Headers'
 
 // Componentes
 import styles from './style'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const api = 'https://kitsu.io/api/edge/';
+const api = 'https://api.jikan.moe/v4/';
 
 export default function Navegate() {
   // Translate
-  const { singIn, lang } = React.useContext(AuthContext);
+  const { lang } = React.useContext(AuthContext);
   const translate = lang('navegate')
 
   // Info Data Anime
@@ -25,15 +26,19 @@ export default function Navegate() {
   const navigation = useNavigation();
 
   const AnimeInfo = (itemID) => {
-    let anime = info.data.find(a => a.id == itemID);
-    navigation.push('Anime', { data: anime })
-  };
+    fetch(`${api}anime/${itemID}/full`)
+    .then((response) => response.json())
+    .then((response) => {
+      navigation.push('Anime', { data: response.data })
+    });
+  }
 
   useEffect(() => {
+    setInfo({});
     if (text) {
       setInfo({});
 
-      fetch(`${api}anime?filter[text]=${text}&page[limit]=18`)
+      fetch(`${api}anime?q=${text.split(" ").join("+")}&limit=18`)
         .then((response) => response.json())
         .then((response) => {
           setInfo(response);
@@ -60,14 +65,14 @@ export default function Navegate() {
         style={styles.flat_list}
         renderItem={({ item }) => (
           <AnimeItem
-            titulo={item.attributes.canonicalTitle}
-            image={item.attributes.posterImage.small}
-            id={item.id}
-            style={styles.animeItem}
+            titulo={item.title}
+            image={item.images.jpg.image_url}
+            id={item.mal_id}
+            estilo={styles.animeItem}
             funcao={AnimeInfo}
           />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.mal_id}
       />
 
     </View>

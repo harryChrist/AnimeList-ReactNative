@@ -8,7 +8,9 @@ import { ThemeProvider } from 'styled-components'
 import Login from './routes/Login/index'
 import Home from './routes/Screens/index'
 
-
+import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import { Auth } from './data/config/firebase'
+import { registerUser, singInUser, singOutUser } from './data/services/Users';
 import { AuthContext } from './context/context';
 import { i18n } from './data/language';
 
@@ -20,25 +22,63 @@ export default function App() {
   const [userToken, setUserToken] = useState(null);
   const [lang, setLang] = useState('en_us');
 
-
   const authContext = useMemo(() => ({
     setLang: (key) => {
       setLang(key);
     },
+    getUser: () => userToken,
     lang: (key) => {
       return i18n(key, lang);
     },
-    singIn: (token) => {
-      setUserToken(token || 'shiro' );
+    singIn: (email, password) => {
       setIsLoading(false);
+      signInWithEmailAndPassword(Auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          setUserToken(user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(error.message)
+        });
     },
     singOut: () => {
-      setUserToken(null);
       setIsLoading(false);
+      signOut(Auth).then(() => {
+        // Sign-out successful.
+        setUserToken(null);
+    }).catch((error) => {
+        // An error happened.
+        console.log(error)
+        return false;
+    });
     },
-    singUp: () => {
-      setUserToken('shiro');
-      setIsLoading(false);
+    singUp: async (user, email, password) => {
+      //registerUser(user, email, password)
+      //setUserToken(email);
+      try {
+        await createUserWithEmailAndPassword(Auth, email, password)
+          .catch((err) =>
+            console.log(err)
+          ).then((re) => {
+            console.log(re);
+          });
+        /*await sendEmailVerification(Auth.currentUser).catch((err) =>
+          console.log(err)
+        );*/
+        await updateProfile(Auth.currentUser, {
+          displayName: user,
+          photoURL: 'https://cdn.discordapp.com/attachments/981189453777338419/981189539789934612/unknown.png',
+        })
+          .catch(
+            (err) => console.log(err)
+          );
+      } catch (err) {
+        console.log(err);
+      }
     },
   }));
 

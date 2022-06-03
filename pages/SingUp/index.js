@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // Banco de Dados
-import { CreateUser } from '../../data/services/Users'
+import { CreateUser, registerUser } from '../../data/services/Users'
 
 function Register(props) {
   // Tradução
@@ -26,11 +26,8 @@ function Register(props) {
     resolver: yupResolver(InputSchema)
   });
 
-  const onSubmit = (data) => {
-    console.log(data)
-  }
   // Apenas um alert, para retornar um array, das informações
-  //const onSubmit = (data) => Alert.alert(JSON.stringify(data));
+  const onSubmit = (data) => registerUser(data.user, data.email, data.password);
 
   return (
     <View style={styles.container}>
@@ -81,12 +78,11 @@ function Register(props) {
           <Animatable.View delay={500} animation='fadeInUp'>
             <ForgotButton
               button={translate.forget}
-              local='SingIn'
               style={styles.cupertinoButtonBlueTextColor}
             ></ForgotButton>
             <SupButton
               title={translate.button}
-              onPress={handleSubmit(CreateUser)}
+              onPress={handleSubmit(onSubmit)}
             />
           </Animatable.View>
         </ScrollView>

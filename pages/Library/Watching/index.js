@@ -6,8 +6,12 @@ import styles from './style'
 import {db} from "../../../data/config/firebase";
 import {collection, getDocs} from 'firebase/firestore/lite'
 
+import { AuthContext } from "../../../context/context";
+
 export default function Watching(props) {
   const [user, setUser] = useState([]);
+
+  const { getUser } = React.useContext(AuthContext);
 
   const GetSata = async () => {
     const citiesCol = collection(db, 'Users');
@@ -21,8 +25,8 @@ export default function Watching(props) {
 
   return (
     <View style={styles.container}>
-    <Text style={styles.text}>Watching</Text>
-    <Button title="Seila" onPress={GetSata}/>
+    <Text style={styles.text}>{getUser().displayName}</Text>
+    <Button title="Seila" onPress={console.log(getUser())}/>
     <FlatList
     showsVerticalScrollIndicator={false}
     data={user}/>

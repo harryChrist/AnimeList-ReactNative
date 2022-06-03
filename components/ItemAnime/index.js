@@ -1,26 +1,36 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
+import { styles, styled } from './style'
 
-const testee = 'https://cdn.discordapp.com/attachments/884463361327255573/977023805660753920/115123-killua-photos-zoldyck-free-hq-image.png'
+const NoImage = 'https://cdn.discordapp.com/attachments/884463361327255573/977023805660753920/115123-killua-photos-zoldyck-free-hq-image.png'
 // props => image, style, titulo
-export default function ItemAnime(props) {
+export function AnimeItem(props) {
   return (
     <TouchableOpacity
       onPress={function () {
         props.funcao(props.id);
       }}>
-      <View style={[styles.container, props.style]}>
-        <View style={styles.imageStack}>
-          <Image
-            source={{
-              uri: props.image || testee,
-            }}
-            resizeMode="stretch"
-            style={styles.image}
-          ></Image>
+      <View style={[styles.container, props.estilo]}>
+        <Image
+          source={{
+            uri: props.image || NoImage,
+          }}
+          resizeMode="stretch"
+          blurRadius={20}
+          style={styles.background}
+        />
+        <View style={styles.group}>
+          <View style={styles.imageStack}>
+            <Image
+              source={{
+                uri: props.image || NoImage,
+              }}
+              resizeMode="stretch"
+              style={styles.image}
+            />
+          </View>
           <View style={styles.rect}>
-            <View style={styles.tituloFiller}></View>
-            <Text style={styles.titulo}>{props.titulo || "Loading"}</Text>
+            <Text numberOfLines={2} style={styles.titulo}>{props.titulo || "Loading"}</Text>
           </View>
         </View>
       </View>
@@ -28,48 +38,96 @@ export default function ItemAnime(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    borderColor: "#CCC",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: -2,
-      height: 2
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 1.5,
-    elevation: 3,
-    //overflow: "hidden"
-  },
-  image: {
-    position: "absolute",
-    height: '100%',
-    width: '100%'
-  },
-  rect: {
-    top: 145,
-    width: '100%',
-    height: 29,
-    position: "absolute",
-    backgroundColor: "rgba(0,0,0,0.6)"
-  },
-  tituloFiller: {
-    flex: 1
-  },
-  titulo: {
-    //fontFamily: "roboto-regular",
-    color: "rgba(255,255,255,1)",
-    fontSize: 10,
-    textAlign: "center",
-    width: 114,
-    height: 27,
-    marginBottom: 1,
-    marginLeft: 3
-  },
-  imageStack: {
-    width: 120,
-    height: 174,
-    marginTop: -1,
-    marginLeft: -1
-  }
-});
+export function AnimeItemNoPress(props) {
+  return (
+      <View style={[styles.container, props.estilo]}>
+        <Image
+          source={{
+            uri: props.image || NoImage,
+          }}
+          resizeMode="stretch"
+          blurRadius={20}
+          style={styles.background}
+        />
+        <View style={styles.group}>
+          <View style={styles.imageStack}>
+            <Image
+              source={{
+                uri: props.image || NoImage,
+              }}
+              resizeMode="stretch"
+              style={styles.image}
+            />
+          </View>
+          <View style={styles.rect}>
+            <Text numberOfLines={2} style={styles.titulo}>{props.titulo || "Loading"}</Text>
+          </View>
+        </View>
+      </View>
+  );
+}
+
+export function CharacterItem(props) {
+  return (
+    <TouchableOpacity
+      onPress={function () {
+        props.funcao(props.id);
+      }}>
+      <View style={[styled.conteiners, props.estilo]}>
+        <Image
+          source={{
+            uri: props.image || NoImage,
+          }}
+          resizeMode="stretch"
+          blurRadius={20}
+          style={styled.background}
+        />
+        <View style={styled.imageStack}>
+          <Image
+            source={{
+              uri: props.image || NoImage,
+            }}
+            resizeMode="stretch"
+            style={styled.image}
+          />
+        </View>
+        <View style={styled.rect}>
+          <Text allowFontScaling style={styled.titulo}> { props.titulo.length < 22
+            ? `${props.titulo}`
+            : `${props.titulo.substring(0, 20)}...`}</Text>
+          <Text style={styled.titulo}>{props.role || ""}</Text>
+        </View>
+      </View>
+    </TouchableOpacity >
+  );
+}
+
+export function CharacterItemNoPress(props) {
+  return (
+      <View style={[styled.conteiners, props.estilo]}>
+        <Image
+          source={{
+            uri: props.image || NoImage,
+          }}
+          resizeMode="stretch"
+          blurRadius={20}
+          style={styled.background}
+        />
+        <View style={styled.imageStack}>
+          <Image
+            source={{
+              uri: props.image || NoImage,
+            }}
+            resizeMode="stretch"
+            style={styled.image}
+          />
+        </View>
+        <View style={styled.rect}>
+          <Text allowFontScaling style={styled.titulo}> { props.titulo.length < 22
+            ? `${props.titulo}`
+            : `${props.titulo.substring(0, 20)}...`}</Text>
+          <Text style={styled.titulo}>{props.role || ""}</Text>
+        </View>
+      </View>
+  );
+}
