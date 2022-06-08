@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 import { HeaderNav } from "../../components/Headers";
 
 // Componentes Estilizados
-import styles from './style'
+import styles, { ButtonsNav } from './style'
 
 const api = 'https://api.jikan.moe/v4/';
 
@@ -24,9 +24,9 @@ export default function News(props) {
   const [seasonNow, setSeasonNow] = useState();
   const [seasonNowText, setSeasonNowText] = useState('');
   const [seasonComing, setSeasonComing] = useState();
-  const [topFilter, setTopFilter] = useState(3)
+  const [topFilter, setTopFilter] = useState(1)
   const [PrecisoDisso, setPreciso] = useState('Sexo');
-  const Tops = ['upcoming', 'airing', 'bypopularity', 'favorite'];
+  const Tops = ['bypopularity', 'airing', 'upcoming', 'favorite'];
 
   const navigation = useNavigation();
 
@@ -80,27 +80,27 @@ export default function News(props) {
             placeholder='Search'
             onChangeText={text => setText(text)}
             NoSearchBar />
-          <View style={[styles.conteiners, {height: 260,}]}>
+          <View style={[styles.conteiners, { height: 260, }]}>
             <View style={styles.conteiners_tab}>
               <Text style={styles.conteiners_title}>{translate.topAnime}</Text>
             </View>
             <View style={styles.navTab}>
-              <TouchableOpacity style={styles.navTab_buttons}
+              <ButtonsNav selected={topFilter === 1 ? true : ''}
                 onPress={() => setTopFilter(1)}>
-                <Text style={styles.navTab_text}>{translateSeason.upcoming}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navTab_buttons}
+                <Text style={styles.navTab_text}>{translateSeason.bypopularity}</Text>
+              </ButtonsNav>
+              <ButtonsNav selected={topFilter === 2 ? true : ''}
                 onPress={() => setTopFilter(2)}>
                 <Text style={styles.navTab_text}>{translateSeason.airing}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navTab_buttons}
+              </ButtonsNav>
+              <ButtonsNav selected={topFilter === 3 ? true : ''}
                 onPress={() => setTopFilter(3)}>
-                <Text style={styles.navTab_text}>{translateSeason.bypopularity}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navTab_buttons}
+                <Text style={styles.navTab_text}>{translateSeason.upcoming}</Text>
+              </ButtonsNav>
+              <ButtonsNav selected={topFilter === 4 ? true : ''}
                 onPress={() => setTopFilter(4)}>
                 <Text style={styles.navTab_text}>{translateSeason.favorite}</Text>
-              </TouchableOpacity>
+              </ButtonsNav>
             </View>
             <FlatList
               data={topAnime ? topAnime.data : {}}
@@ -138,7 +138,7 @@ export default function News(props) {
               keyExtractor={(item) => item.mal_id}
             />
           </View>
-          <View style={[styles.conteiners, {marginBottom: '10%'}]}>
+          <View style={[styles.conteiners, { marginBottom: '10%' }]}>
             <View style={styles.conteiners_tab}>
               <Text style={styles.conteiners_title}>{translate.seasonUp}</Text>
             </View>

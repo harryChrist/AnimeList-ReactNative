@@ -8,9 +8,16 @@ import { ThemeProvider } from 'styled-components'
 import Login from './routes/Login/index'
 import Home from './routes/Screens/index'
 
-import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import { LogBox } from 'react-native';
+
+import { signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
+import { collection, getDocs, doc, setDoc, query } from 'firebase/firestore/lite'
+import { getAuth } from "firebase/auth";
+
+import { db } from './data/config/firebase';
 import { Auth } from './data/config/firebase'
-import { registerUser, singInUser, singOutUser } from './data/services/Users';
+import { CreateUser } from './data/services/Database';
+
 import { AuthContext } from './context/context';
 import { i18n } from './data/language';
 
@@ -18,15 +25,21 @@ const cores = {
   bg: '#191a24',
 };
 export default function App() {
+  LogBox.ignoreAllLogs()
   const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
   const [lang, setLang] = useState('en_us');
+  const [sexo, setSexo] = useState('sim');
 
   const authContext = useMemo(() => ({
     setLang: (key) => {
       setLang(key);
     },
-    getUser: () => userToken,
+    getUser: () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      return user;
+    },
     lang: (key) => {
       return i18n(key, lang);
     },
@@ -37,7 +50,6 @@ export default function App() {
           // Signed in
           const user = userCredential.user;
           setUserToken(user)
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -50,25 +62,24 @@ export default function App() {
       signOut(Auth).then(() => {
         // Sign-out successful.
         setUserToken(null);
-    }).catch((error) => {
+      }).catch((error) => {
         // An error happened.
         console.log(error)
         return false;
-    });
+      });
     },
     singUp: async (user, email, password) => {
       //registerUser(user, email, password)
-      //setUserToken(email);
       try {
         await createUserWithEmailAndPassword(Auth, email, password)
           .catch((err) =>
             console.log(err)
           ).then((re) => {
-            console.log(re);
+            if (re) {
+              setUserToken(re.user); // user.uid = banco de dados
+              CreateUser(re.user.uid)
+            }
           });
-        /*await sendEmailVerification(Auth.currentUser).catch((err) =>
-          console.log(err)
-        );*/
         await updateProfile(Auth.currentUser, {
           displayName: user,
           photoURL: 'https://cdn.discordapp.com/attachments/981189453777338419/981189539789934612/unknown.png',

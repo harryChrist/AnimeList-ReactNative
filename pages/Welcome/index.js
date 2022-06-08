@@ -25,7 +25,7 @@ export default function Welcome(props) {
         <Texto>{translate.login}</Texto>
       </SupButton>
 
-      <SupButton onPress={singIn('a@a.com','123123')}>
+      <SupButton onPress={() => singIn('a@a.com','123123')}>
         <Texto>Home</Texto>
       </SupButton>
     </Container>

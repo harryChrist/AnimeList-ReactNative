@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
-import {Picker} from '@react-native-picker/picker'
+import { Text, View, StyleSheet, Image, Picker } from 'react-native';
+//import {Picker} from '@react-native-picker/picker'
 
 export function PickerLang({ data, map, selectedValue, onValueChange, ...rest }) {
     return (
@@ -22,11 +22,10 @@ export function PickerLang({ data, map, selectedValue, onValueChange, ...rest })
 
 const styles = StyleSheet.create({
     container: {
-        width: '30%',
-        borderRadius: 1,
+        width: '35%',
+        borderRadius: 30,
         borderWidth: 1,
         borderColor: 'white',
-        marginLeft: 10,
     },
     picker: {
         padding: 10,

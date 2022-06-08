@@ -7,7 +7,10 @@ const api = 'https://api.jikan.moe/v4/';
 
 // Icon
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/Ionicons";
 import Youtube from 'react-native-youtube-iframe'
+
+import { AnimeDataExist, DeleteAnime, GetDataAnime } from '../../data/services/Database'
 
 // Componentes
 import { AnimeItem, CharacterItem } from '../../components/ItemAnime'
@@ -16,8 +19,9 @@ import { styles, ButtonsNav } from './style'
 
 function AnimePage({ route, navigation }) {
   // Translate
-  const { lang } = React.useContext(AuthContext);
-  const translate = lang('animePage')
+  const { lang, getUser } = React.useContext(AuthContext);
+  const translate = lang('animePage');
+  const user = getUser();
 
   // Info Data Anime
   const [characters, setCharacters] = useState({}); // Personagens
@@ -28,6 +32,18 @@ function AnimePage({ route, navigation }) {
 
   var { data, request } = route.params;
   navigation.setOptions({ title: data.title })
+  const [favorited, setFavorited] = useState(data.favorited ? data.favorited : 0)
+
+  const onSubmit = (key) => {
+    if (key == favorited) return;
+    AnimeDataExist(user.uid, data.mal_id, data, key)
+    setFavorited(key)
+  }
+
+  const Delete = () => {
+    DeleteAnime(user.uid, data.mal_id)
+    setFavorited(0)
+  }
 
   // Imagens
   let image = data.images.jpg.large_image_url ? data.images.jpg.large_image_url : data.images.jpg.image_url;
@@ -44,7 +60,7 @@ function AnimePage({ route, navigation }) {
       });
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (data.mal_id) {
       setCharacters({});
 
@@ -54,21 +70,28 @@ function AnimePage({ route, navigation }) {
           setCharacters(response);
         });
     }
+    if (favorited == 0) {
+      let tentar = await GetDataAnime(user.uid, data.mal_id);
+      setFavorited(tentar.favorited)
+    }
   }, [data]);
 
   return (
     <View style={styles.container}>
       <SafeAreaView>
         <ScrollView>
-          <View style={styles.background}>
-            <Image
-              source={{
-                uri: background,
-              }}
-              resizeMode="stretch"
-              style={styles.background_image}
-            />
-          </View>
+          <Image
+            source={{
+              uri: 'https://i.pinimg.com/originals/70/dc/6d/70dc6d52f887888ac7e6ae705cfe6a95.gif',
+            }}
+            resizeMode="stretch" //contain
+            style={{ width: "100%", height: "100%", position: "absolute" }}
+          />
+          {favorited ? <View style={{ width: '100%', height: '100%', color: "white", position: 'absolute', paddingTop: '2%', paddingRight: '2%' }}>
+            <TouchableOpacity onPress={() => Delete()}>
+              <Icon name="trash-sharp" style={{ fontSize: 30, color: "white", alignSelf: 'flex-end' }} />
+            </TouchableOpacity>
+          </View> : null}
           <View style={styles.summary}>
             <View style={styles.summaryImage}>
               <Image
@@ -81,25 +104,39 @@ function AnimePage({ route, navigation }) {
             </View>
 
             <View style={styles.Marks}>
-              <FontAwesomeIcon name="eye" style={styles.Marks_icon} />
-              <FontAwesomeIcon name="bookmark" style={styles.Marks_icon} />
-              <FontAwesomeIcon name="lock" style={styles.Marks_icon} />
-              <FontAwesomeIcon name="check" style={styles.Marks_icon} />
+              <TouchableOpacity onPress={() => onSubmit(1)}>
+                {favorited == 1 ? <FontAwesomeIcon name="eye" style={[styles.Marks_icon, { color: "#2E94EC" }]} />
+                  : <FontAwesomeIcon name="eye" style={[styles.Marks_icon, { color: "rgba(128,128,128,1)" }]} />}
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => onSubmit(2)}>
+                {favorited == 2 ? <FontAwesomeIcon name="bookmark" style={[styles.Marks_icon, { color: "#F09A4A" }]} />
+                  : <FontAwesomeIcon name="bookmark" style={[styles.Marks_icon, { color: "rgba(128,128,128,1)" }]} />}
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => onSubmit(3)}>
+                {favorited == 3 ? <FontAwesomeIcon name="lock" style={[styles.Marks_icon, { color: "#F44646" }]} />
+                  : <FontAwesomeIcon name="lock" style={[styles.Marks_icon, { color: "rgba(128,128,128,1)" }]} />}
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => onSubmit(4)}>
+                {favorited == 4 ? <FontAwesomeIcon name="check" style={[styles.Marks_icon, { color: "#40FF00" }]} />
+                  : <FontAwesomeIcon name="check" style={[styles.Marks_icon, { color: "rgba(128,128,128,1)" }]} />}
+              </TouchableOpacity>
+
+
             </View>
 
             <View style={styles.navTab}>
-              <TouchableOpacity style={styles.navTab_buttons}
+              <ButtonsNav selected={summary === 1 ? true : ''}
                 onPress={() => setSummary(1)}>
                 <Text style={styles.navTab_text}>{translate.informations}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navTab_buttons}
+              </ButtonsNav>
+              {data.synopsis ? <ButtonsNav selected={summary === 2 ? true : ''}
                 onPress={() => setSummary(2)}>
                 <Text style={styles.navTab_text}>{translate.sinopse}</Text>
-              </TouchableOpacity>
-              {youtube ? <TouchableOpacity style={styles.navTab_buttons}
+              </ButtonsNav> : <View></View>}
+              {youtube ? <ButtonsNav selected={summary === 3 ? true : ''}
                 onPress={() => setSummary(3)}>
                 <Text style={styles.navTab_text}>{translate.trailer}</Text>
-              </TouchableOpacity> : <View></View>}
+              </ButtonsNav> : <View></View>}
             </View>
 
             <View style={styles.summary_content}>
@@ -118,18 +155,18 @@ function AnimePage({ route, navigation }) {
                       <Text style={styles.content_itens_subtitle}>{translate.status}</Text>
                       <Text style={styles.content_itens_text}>{data.status}</Text>
                     </View>
-                    <View style={styles.content_itens}>
+                    {data.score ? <View style={styles.content_itens}>
                       <Text style={styles.content_itens_subtitle}>{translate.score}</Text>
                       <Text style={styles.content_itens_text}>{data.score}</Text>
-                    </View>
+                    </View> : null}
                     <View style={styles.content_itens}>
                       <Text style={styles.content_itens_subtitle}>{translate.rank}</Text>
                       <Text style={styles.content_itens_text}>#{data.popularity}</Text>
                     </View>
-                    <View style={styles.content_itens}>
+                    {data.rating ? <View style={styles.content_itens}>
                       <Text style={styles.content_itens_subtitle}>{translate.age}</Text>
                       <Text style={styles.content_itens_text}>{data.rating}</Text>
-                    </View>
+                    </View> : null}
                     <View style={styles.content_itens}>
                       <Text style={styles.content_itens_subtitle}>{translate.type}</Text>
                       <Text style={styles.content_itens_text}>{data.type} - {data.source}</Text>
@@ -149,6 +186,22 @@ function AnimePage({ route, navigation }) {
                     <View style={styles.content_itens}>
                       <Text style={styles.content_itens_subtitle}>{translate.genre}</Text>
                       <Text style={styles.content_itens_text}>{data.genres.map(i => i.name).join(', ')}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                      <Text style={{
+                        width: '95%',
+                        fontSize: 10,
+                        textAlign: 'center',
+                        marginLeft: 20,
+                        color: '#b8b4b4'
+                      }}>{data.title_english ? data.title_english : ''}</Text>
+                      <Text style={{
+                        width: '95%',
+                        fontSize: 10,
+                        textAlign: 'center',
+                        marginLeft: 20,
+                        color: '#b8b4b4'
+                      }}>{data.title_japanese ? data.title_japanese : ''}</Text>
                     </View>
                   </View>
                 </View>

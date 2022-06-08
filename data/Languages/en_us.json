@@ -40,8 +40,13 @@
         "title": "Settings",
         "change_pass": "Change Password",
         "change_email": "Change E-Mail",
+        "change_perfil": "Change Perfil",
         "singOut": "SingOut",
-        "language": "Language"
+        "language": "Language",
+        "watching":"Watching",
+        "waiting":"Waiting",
+        "watched":"Watched",
+        "droped":"Droped"
     },
     "news": {
         "title": "News",
@@ -80,5 +85,8 @@
         "animes":"Related Animes",
         "mangas":"Related Mangas",
         "voices":"Voices Actors"
+    },
+    "changeFoto":{
+        "placeholder":"Character name"
     }
 }

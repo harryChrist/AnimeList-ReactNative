@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // Banco de Dados
-import { CreateUser, registerUser } from '../../data/services/Users'
+import { CreateUser, registerUser } from '../../data/services/Database'
 
 function Register(props) {
   // Tradução
@@ -27,7 +27,7 @@ function Register(props) {
   });
 
   // Apenas um alert, para retornar um array, das informações
-  const onSubmit = (data) => registerUser(data.user, data.email, data.password);
+  const onSubmit = (data) => singUp(data.user, data.email, data.password);
 
   return (
     <View style={styles.container}>

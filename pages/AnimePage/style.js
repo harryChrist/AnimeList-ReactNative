@@ -1,5 +1,38 @@
 import { StyleSheet } from "react-native";
-import styled from 'styled-components/native';
+import styled, {css} from 'styled-components/native';
+
+/*navTab_buttons: {
+    height: 30,
+    width: 120,
+    margin: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderRadius: 20,
+    backgroundColor: '#181a1b',
+  }, */
+export const ButtonsNav = styled.TouchableOpacity`
+  height: 30px;
+  width: 120px;
+  margin: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  minWidth: 88px;
+  borderWidth: 1px;
+  border-style: solid;
+  shadow-color: rgba(0,0,0,1);
+  box-shadow: 3px 3px 5px rgba(0,0,0,1);
+  font-size: 18px;
+  background: ${props => props.second ? "gray" : '#181a1b'};
+  background: #181a1b;
+  ${props =>
+    props.selected &&
+    css`
+    background: cornflowerblue;
+    `}
+`
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,16 +41,14 @@ export const styles = StyleSheet.create({
   },
   background: {
     width: '100%',
+    height: '100%',
     position: 'absolute',
-    height: 200,
-    opacity: 0.5,
   },
   background_image: {
     width: '100%',
     height: '100%',
-    opacity: 0.5,
   },
-  summary:{
+  summary: {
     flex: 1,
     width: '90%',
     margin: '5%',
@@ -39,12 +70,11 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     height: '100%'
   },
-  Marks:{
+  Marks: {
     flexDirection: "row",
     justifyContent: 'center',
   },
-  Marks_icon:{
-    color: "rgba(128,128,128,1)",
+  Marks_icon: {
     fontSize: 25,
     marginTop: 10,
     marginLeft: 15,
@@ -111,7 +141,7 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     color: '#b8b4b4'
   },
-  content_titlesyn:{
+  content_titlesyn: {
     color: "#fff",
     marginLeft: 10,
     marginBottom: 10,
@@ -129,7 +159,7 @@ export const styles = StyleSheet.create({
   character_container: {
     width: '100%',
     height: 220,
-    flex:1,
+    flex: 1,
     backgroundColor: '#222527',
     marginBottom: 10,
     borderWidth: 1,

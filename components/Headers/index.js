@@ -14,7 +14,7 @@ export function HeaderNav({icon, title, style, value, onPress, NoSearchBar, ...r
           </Text>
         </View>
         {NoSearchBar ? false : <SearchInput
-          style={styles.materialUnderlineTextbox2}
+          style={styles.SearchInput}
           {...rest}
         /> }
       </View>
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     //backgroundColor: "#3F51B5",
     flexDirection: "row",
     alignItems: "center",
+    width: '100%',
     padding: 4,
     justifyContent: "space-between",
     shadowColor: "#111",
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
     elevation: 3
   },
   textWrapper: {
-    height: 18,
-    marginTop: 14
+    height: '100%',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 18,
@@ -65,9 +66,9 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 8,
   },
-  materialUnderlineTextbox2: {
+  SearchInput: {
     color: "#fff",
-    height: 43,
+    height: '100%',
     width: 200,
     paddingRight: 5,
     fontSize: 16,

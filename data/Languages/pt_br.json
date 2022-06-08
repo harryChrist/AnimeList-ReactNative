@@ -37,11 +37,16 @@
         "loading":"Carregando.."
     },
     "settings": {
-        "title":"Configurações",
-        "change_pass":"Mudar Senha",
-        "change_email":"Mudar E-Mail",
-        "singOut":"Sair da Conta",
-        "language":"Linguagem"
+        "title": "Configurações",
+        "change_pass": "Alterar Senha",
+        "change_email": "Alterar E-Mail",
+        "change_perfil": "Modificar Perfil",
+        "singOut": "SingOut",
+        "language": "Linguagem",
+        "watching":"Assistindo",
+        "waiting":"Na Fila",
+        "watched":"Vistos",
+        "droped":"Dropados"
     },
     "news":{
         "title":"Novidades",
@@ -50,14 +55,14 @@
         "seasonUp":"Próxima Temporada"
     },
     "seasons": {
-        "upcoming": "UpComing",
-        "airing": "Airing",
-        "bypopularity": "ByPopularity",
-        "favorite": "Favorites",
-        "winter":"Winter",
-        "spring":"Spring",
-        "summer":"Summer",
-        "fall":"Fall"
+        "upcoming": "Chegando",
+        "airing": "No Ar",
+        "bypopularity": "Populares",
+        "favorite": "Favoritos",
+        "winter":"Inverno",
+        "spring":"Primavera",
+        "summer":"Verão",
+        "fall":"Outono"
     },
     "animePage":{
         "trailer":"Trailer",
@@ -80,5 +85,8 @@
         "animes":"Animes Relacionados",
         "mangas":"Mangas Relacionados",
         "voices":"Dubladores"
+    },
+    "changeFoto":{
+        "placeholder":"Nome do Personagem"
     }
 }

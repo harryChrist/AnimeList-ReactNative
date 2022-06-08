@@ -26,6 +26,13 @@ export default function CharacterPage({ route, navigation }) {
     <View style={styles.container}>
       <SafeAreaView>
         <ScrollView>
+          <Image
+            source={{
+              uri: 'https://i.pinimg.com/originals/70/dc/6d/70dc6d52f887888ac7e6ae705cfe6a95.gif',
+            }}
+            resizeMode="stretch" //contain
+            style={{ width: "100%", height: "100%", position: "absolute" }}
+          />
           <View style={styles.summary}>
             <View style={styles.summaryImage}>
               <Image

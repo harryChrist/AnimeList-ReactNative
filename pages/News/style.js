@@ -1,4 +1,37 @@
 import { StyleSheet } from "react-native";
+import styled, {css} from 'styled-components/native';
+
+/*navTab_buttons: {
+    height: 30,
+    width: 90,
+    margin: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderRadius: 20,
+    backgroundColor: '#181a1b',
+  }, */
+export const ButtonsNav = styled.TouchableOpacity`
+  height: 30px;
+  width: 90px;
+  margin: 2px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  borderWidth: 1px;
+  border-style: solid;
+  shadow-color: rgba(0,0,0,1);
+  box-shadow: 3px 3px 5px rgba(0,0,0,1);
+  font-size: 18px;
+  background: ${props => props.second ? "gray" : '#181a1b'};
+  background: #181a1b;
+  ${props =>
+    props.selected &&
+    css`
+    background: cornflowerblue;
+    `}
+`
 
 const styles = StyleSheet.create({
   container: {

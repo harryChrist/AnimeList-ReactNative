@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { View, Image, Text, Alert, StyleSheet } from "react-native";
 
 
@@ -7,10 +7,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 const Tab = createMaterialTopTabNavigator();
 
 // Paginação
-import Watching from '../../pages/Library/Watching/index'
-import Waiting from '../../pages/Library/Waiting/index'
-import Droped from '../../pages/Library/Droped/index'
-import Watched from '../../pages/Library/Watched/index'
+import {Watching, Waiting, Droped, Watched} from '../../pages/Library'
 
 // Icons
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -52,7 +49,7 @@ export default function Library() {
                 },
 
             })}>
-            <Tab.Screen name="Watching" component={Watching} />
+            <Tab.Screen name="Watching" component={Watching} getId={({ params }) => params.userId}/>
             <Tab.Screen name="Waiting" component={Waiting} />
             <Tab.Screen name="Droped" component={Droped} />
             <Tab.Screen name="Watched" component={Watched} />
