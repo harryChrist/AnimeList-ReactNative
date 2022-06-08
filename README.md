@@ -12,9 +12,13 @@
 
 ## Important Modules used:
 - "@expo/vector-icons": "^12.0.0",
-- "react-native-youtube-iframe": "^2.2.2",
 - "expo": "~44.0.0",
 - "firebase": "^9.6.11",
+- "styled-components": "*",
+- "@react-navigation/stack": "*",
+- "react-native-animatable": "*",
+- "react-native-youtube-iframe": "^2.2.2",
+- "react-native-webview": "^11.21.1",
 
 
 ## Preview:
