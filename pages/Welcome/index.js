@@ -24,10 +24,11 @@ export default function Welcome(props) {
       <SupButton onPress={() => navigation.navigate('SingIn')}>
         <Texto>{translate.login}</Texto>
       </SupButton>
-
-      <SupButton onPress={() => singIn('a@a.com','123123')}>
-        <Texto>Home</Texto>
-      </SupButton>
     </Container>
   );
 }
+
+/*
+<SupButton onPress={() => singIn('a@a.com','123123')}>
+        <Texto>Home</Texto>
+      </SupButton> */
