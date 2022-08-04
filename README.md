@@ -5,11 +5,11 @@
 </p>
 
 ## How to Start
-Use "npm i", to install all dependencies.
-change the firebase database login on: "./data/config/firebase.js".
-use "npm start", to start an application.
-and that's it all. but as it's an application with limited dependencies to cell phone use, it can only be tested/used on cell phone, so use or install expo on your cell phone.. and it needs to be on the same network.
-if it's an emulator, pressing A, and the expo will do everything by itself.
+- Use "npm i", to install all dependencies.
+- change the firebase database login on: "./data/config/firebase.js".
+- use "npm start", to start an application.
+- and that's it all. but as it's an application with limited dependencies to cell phone use, it can only be tested/used on cell phone, so use or install expo on your cell phone.. and it needs to be on the same network.
+- if it's an emulator, pressing A, and the expo will do everything by itself.
 
 ## Used on application:
 - <a href="https://nodejs.org/en/">🔗 Javascript (Node.js)</a>
