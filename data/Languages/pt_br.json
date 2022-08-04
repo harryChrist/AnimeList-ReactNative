@@ -1,0 +1,92 @@
+{
+    "language": {
+        "name":"Português",
+        "lang":"pt_br"
+    },
+    "welcome": {
+        "title": "Bem Vindo",
+        "login": "Logar",
+        "sing_up": "Inscrever"
+    },
+    "login": {
+        "title": "Login",
+        "input_email": "Email ou Usuário",
+        "input_pass": "Senha",
+        "button": "Logar",
+        "forget": "Esqueceu sua Senha?"
+    },
+    "singUp": {
+        "title": "Registro",
+        "input_user":"Usuário",
+        "input_email": "Email",
+        "input_pass": "Senha",
+        "input_pass_verify":"Verificar Senha",
+        "button": "Se Inscrever",
+        "forget": "Você já tem uma conta?"
+    },
+    "library":{
+        "watching":"Watching",
+        "waiting":"Waiting",
+        "droped":"Droped",
+        "watched":"Watched"
+    },
+    "navegate":{
+        "title":"Navegação",
+        "input_search":"Procurar",
+        "null":"Nada..",
+        "loading":"Carregando.."
+    },
+    "settings": {
+        "title": "Configurações",
+        "change_pass": "Alterar Senha",
+        "change_email": "Alterar E-Mail",
+        "change_perfil": "Modificar Perfil",
+        "singOut": "Sair",
+        "language": "Linguagem",
+        "watching":"Assistindo",
+        "waiting":"Na Fila",
+        "watched":"Vistos",
+        "droped":"Dropados"
+    },
+    "news":{
+        "title":"Novidades",
+        "seasonNow":"Temporada Atualmente ",
+        "topAnime":"Top Animes",
+        "seasonUp":"Próxima Temporada"
+    },
+    "seasons": {
+        "upcoming": "Chegando",
+        "airing": "No Ar",
+        "bypopularity": "Populares",
+        "favorite": "Favoritos",
+        "winter":"Inverno",
+        "spring":"Primavera",
+        "summer":"Verão",
+        "fall":"Outono"
+    },
+    "animePage":{
+        "trailer":"Trailer",
+        "informations":"Informações",
+        "sinopse":"Sinopse",
+        "rating":"Sua Avaliação",
+        "status":"Status",
+        "score":"Avaliação",
+        "rank":"Rank",
+        "age":"Idade",
+        "type":"Tipo",
+        "season":"Periodo",
+        "producers":"Produtores",
+        "studio":"Studios",
+        "genre":"Gêneros",
+        "characters":"Personagens"
+    },
+    "characterPage": {
+        "about":"Sobre:",
+        "animes":"Animes Relacionados",
+        "mangas":"Mangas Relacionados",
+        "voices":"Dubladores"
+    },
+    "changeFoto":{
+        "placeholder":"Nome do Personagem"
+    }
+}

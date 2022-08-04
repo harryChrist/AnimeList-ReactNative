@@ -1,0 +1,92 @@
+{
+    "language": {
+        "name":"Espanish",
+        "lang":"es_es"
+    },
+    "welcome": {
+        "title": "Bienvenido",
+        "login": "Iniciar sesión",
+        "sing_up": "Registro"
+    },
+    "login": {
+        "title": "Iniciar sesión",
+        "input_email": "Correo electrónico o Usuario",
+        "input_pass": "Contraseña",
+        "button": "Iniciar sesión",
+        "forget": "¿Olvidaste tu contraseña?"
+    },
+    "singUp": {
+        "title": "Registro",
+        "input_user":"Usuario",
+        "input_email": "Correo electrónico",
+        "input_pass": "Clave",
+        "input_pass_verify":"Verificar contraseña",
+        "button": "Inscribirse",
+        "forget": "¿Tienes una cuenta?"
+    },
+    "library":{
+        "watching":"Watching",
+        "waiting":"Waiting",
+        "droped":"Droped",
+        "watched":"Watched"
+    },
+    "navegate":{
+        "title":"Navegación",
+        "input_search":"Buscar",
+        "null":"Cualquier cosa..",
+        "loading":"Cargando.."
+    },
+    "settings": {
+        "title": "Ajustes",
+        "change_pass": "Cambiar contraseña",
+        "change_email": "Cambiar e-mail",
+        "change_perfil": "Modificar Perfil",
+        "singOut": "Salir",
+        "language": "Idioma",
+        "watching":"Assistindo",
+        "waiting":"En fila",
+        "watched":"Visas",
+        "droped":"Caídos"
+    },
+    "news":{
+        "title":"Noticias",
+        "seasonNow":"Temporada Actualmente ",
+        "topAnime":"Los mejores animes",
+        "seasonUp":"Siguiente temporada"
+    },
+    "seasons": {
+        "upcoming": "llegando",
+        "airing": "En el aire",
+        "bypopularity": "Popular",
+        "favorite": "Favoritos",
+        "winter":"Invierno",
+        "spring":"Primavera",
+        "summer":"Verano",
+        "fall":"Otoño"
+    },
+    "animePage":{
+        "trailer":"Remolque",
+        "informations":"Información",
+        "sinopse":"Sinopsis",
+        "rating":"Tu evaluación",
+        "status":"Estado",
+        "score":"Evaluación",
+        "rank":"Rango",
+        "age":"Años",
+        "type":"Escribe",
+        "season":"Período",
+        "producers":"Produtores",
+        "studio":"Studios",
+        "genre":"Gêneros",
+        "characters":"Caracteres"
+    },
+    "characterPage": {
+        "about":"Sobre:",
+        "animes":"Relacionados con Animes",
+        "mangas":"Relacionados con Mangas",
+        "voices":"Actores de doblaje"
+    },
+    "changeFoto":{
+        "placeholder":"Nombre del personaje"
+    }
+}

@@ -1,0 +1,92 @@
+{
+    "language": {
+        "name": "English",
+        "lang": "en_us"
+    },
+    "welcome": {
+        "title": "Welcome",
+        "login": "Login",
+        "sing_up": "SingUp"
+    },
+    "login": {
+        "title": "Login",
+        "input_email": "Email or User",
+        "input_pass": "Password",
+        "button": "LOGIN",
+        "forget": "Forgot your password?"
+    },
+    "singUp": {
+        "title": "Register",
+        "input_user": "User",
+        "input_email": "Email",
+        "input_pass": "Password",
+        "input_pass_verify": "Password Verify",
+        "button": "SING UP",
+        "forget": "Already have an account?"
+    },
+    "library": {
+        "watching": "Watching",
+        "waiting": "Waiting",
+        "droped": "Droped",
+        "watched": "Watched"
+    },
+    "navegate": {
+        "title": "Navegate",
+        "input_search": "Search",
+        "null": "Nothing..",
+        "loading": "Loading.."
+    },
+    "settings": {
+        "title": "Settings",
+        "change_pass": "Change Password",
+        "change_email": "Change E-Mail",
+        "change_perfil": "Change Perfil",
+        "singOut": "SingOut",
+        "language": "Language",
+        "watching":"Watching",
+        "waiting":"Waiting",
+        "watched":"Watched",
+        "droped":"Droped"
+    },
+    "news": {
+        "title": "News",
+        "seasonNow": "Season Now",
+        "topAnime": "Top Animes",
+        "seasonUp": "Season UpComing"
+    },
+    "seasons": {
+        "upcoming": "UpComing",
+        "airing": "Airing",
+        "bypopularity": "ByPopularity",
+        "favorite": "Favorites",
+        "winter":"Winter",
+        "spring":"Spring",
+        "summer":"Summer",
+        "fall":"Fall"
+    },
+    "animePage": {
+        "trailer": "Trailer",
+        "informations": "Informations",
+        "sinopse": "Sinopse",
+        "rating": "Your Rating",
+        "status": "Status",
+        "score": "Rating",
+        "rank": "Rank",
+        "age": "Age",
+        "type": "Type",
+        "season": "Season",
+        "producers": "Producers",
+        "studio": "Studios",
+        "genre": "Genres",
+        "characters": "Characters"
+    },
+    "characterPage": {
+        "about":"About:",
+        "animes":"Related Animes",
+        "mangas":"Related Mangas",
+        "voices":"Voices Actors"
+    },
+    "changeFoto":{
+        "placeholder":"Character name"
+    }
+}
